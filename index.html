@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OTel Observatory</title>
+  <meta name="description" content="A self-contained OpenTelemetry demo: simulated traces, metrics and logs from the Astronomy Shop, with diagrams explaining how it all fits together.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%232a78d6' stroke-width='4'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23eb6834'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#view">Skip to content</a>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#/overview" aria-label="OTel Observatory home">
+        <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="12.5" class="logo-ring"/>
+          <circle cx="16" cy="3.5" r="3" style="fill:var(--s1)"/>
+          <circle cx="26.8" cy="22.2" r="3" style="fill:var(--s2)"/>
+          <circle cx="5.2" cy="22.2" r="3" style="fill:var(--s3)"/>
+          <circle cx="16" cy="16" r="4" class="logo-core"/>
+        </svg>
+        <span class="brand-text"><b>OTel Observatory</b><small>Astronomy Shop · simulated OpenTelemetry</small></span>
+      </a>
+      <div class="top-controls">
+        <label class="load"><span>Load</span>
+          <select id="load" aria-label="Traffic load">
+            <option value="low">Quiet · 5 req/s</option>
+            <option value="normal" selected>Normal · 12 req/s</option>
+            <option value="peak">Peak · 28 req/s</option>
+          </select>
+        </label>
+        <button class="btn live" id="btn-pause" aria-pressed="false" title="Pause view updates (telemetry keeps flowing)"><span class="pulse" aria-hidden="true"></span><span class="lbl">Live</span></button>
+        <button class="btn btn-primary" id="btn-faults" aria-expanded="false" aria-controls="drawer">
+          <svg viewBox="0 0 16 16" class="ic" aria-hidden="true"><path d="M9.5 1L3 9h4l-1 6 6.5-8h-4z" class="ic-fill"/></svg>
+          <span class="hide-sm">Inject faults</span><span class="count" id="fault-count" hidden>0</span>
+        </button>
+        <button class="btn icon-btn" id="btn-theme" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <svg viewBox="0 0 16 16" class="ic" aria-hidden="true"><circle cx="8" cy="8" r="6.2" class="ic-stroke"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" class="ic-fill"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Main">
+      <div class="nav">
+        <a href="#/overview" data-view="overview"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="5" cy="10" r="2.5"/><circle cx="15" cy="5" r="2.5"/><circle cx="15" cy="15" r="2.5"/><path d="M7.3 9l5.4-3M7.3 11l5.4 3"/></svg>Overview</a>
+        <a href="#/traces" data-view="traces"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h10M6 10h9M9 15h8"/></svg>Traces</a>
+        <a href="#/metrics" data-view="metrics"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16l4.5-6 3.5 3 6-8"/></svg>Metrics</a>
+        <a href="#/logs" data-view="logs"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h12M4 15h7"/></svg>Logs</a>
+        <a href="#/concepts" data-view="concepts"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/><path d="M9 6h4.5a1.5 1.5 0 0 1 1.5 1.5V11"/></svg>Concepts</a>
+      </div>
+      <div class="side-foot">
+        <div class="side-h">Exported since load</div>
+        <div class="side-stats" id="side-stats"></div>
+        <p class="side-note">Everything runs locally in this tab. No data leaves your browser.</p>
+      </div>
+    </nav>
+
+    <main id="view" tabindex="-1">
+    </main>
+  </div>
+
+  <div class="banner" id="banner" hidden>
+    <div id="banner-text"></div>
+    <button class="btn" data-open-faults>Manage</button>
+  </div>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" hidden aria-labelledby="drawer-title">
+    <div class="drawer-head">
+      <h2 id="drawer-title">Fault injection</h2>
+      <button class="btn icon-btn" id="drawer-close" aria-label="Close">✕</button>
+    </div>
+    <p class="drawer-lede">Feature flags modelled on the OpenTelemetry demo's <code>flagd</code> flags. Each one changes how the simulated services behave. The telemetry, not this panel, tells you what went wrong.</p>
+    <div id="flag-list"></div>
+    <button class="btn" id="flag-reset">Turn all faults off</button>
+  </aside>
+
+  <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div><h2 id="modal-title">OTLP/JSON</h2><p class="sub" id="modal-sub"></p></div>
+        <div class="modal-actions"><button class="btn" id="modal-copy">Copy</button><button class="btn icon-btn" id="modal-close" aria-label="Close">✕</button></div>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="tooltip" role="tooltip" hidden></div>
+
+  <div class="boot" id="boot">
+    <div class="boot-card">
+      <svg class="logo big" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.5" class="logo-ring"/><circle cx="16" cy="3.5" r="3" style="fill:var(--s1)"/><circle cx="26.8" cy="22.2" r="3" style="fill:var(--s2)"/><circle cx="5.2" cy="22.2" r="3" style="fill:var(--s3)"/><circle cx="16" cy="16" r="4" class="logo-core"/></svg>
+      <b>Warming up the collector…</b>
+      <span class="muted small">Simulating the last 15 minutes of traffic</span>
+      <div class="boot-track"><i id="boot-bar"></i></div>
+    </div>
+  </div>
+
+  <script src="js/telemetry.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/diagrams.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
