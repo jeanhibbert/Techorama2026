@@ -1,0 +1,167 @@
+existential crisis
+therapysessioin
+who thinks ai cant write code at your level?
+ai can do everything
+architecture
+devops
+who remembers when opus 4.5 came out?
+
+latest models skills are slowly dissapering
+chronic agentic ai user
+
+working at 2am to make the most of the 5 h session
+
+uncomfortable truth
+confession tomake - have not written a line of code in months
+
+
+how vague are you in your prompts
+
+will ai replace programmers?
+programmers will be replaced
+software engineeers no
+
+we should be using ai to write tests
+
+ecosystem is fkced
+upper management has not picked up how good tools are
+git hub co-pilot is a bad harness
+
+-----------------------------------
+articulate clearly
+how to review code in vs code
+ai as a learning tools
+fathers matrix algebra
+vibe coding = person in robotaxi
+picture of anthropic building
+had to force myself to unplug - drug addiction
+have a side project
+running out of ideas
+IDEA - specialized projects with frontier agents and harnesses
+tell ed about GH-300
+trust : your heart will be broken - but you cant live without it
+do talk for CAEO team - stuff learnt from techorama
+- do team talk for potential autoex memgrowth and how we will monitor it
+open claw was messaging friends of mine which was strange - made me paranoid
+- create project from original Reactive clients project
+- do kian learning exersize with Lauren using opus 5.5
+using dotnet diagnostic tools - please identify bottlenecks and hotspots!!!!!!!!!
+review all engineers week slides and make sure they are clean
+------------------------------------------------
+- accountability - blame and money
+
+review your own agent's code
+bottle neck is reviewing o f the code - not code output
+
+agentic integrations into vs code = cursor
+
+specialized sub agents
+    - great for parallelizing tasks
+    - research is a great use case
+    - personas are not necessary
+
+Need engineers to guid Agent:
+clean code / vertical arthictecture / DDD 
+security (keep finding things if asked)
+review bandwidth
+ - stupid easy -> will die
+
+frontend design skill from anthropic
+    - see description - very vague
+    - dont use it write your own
+    - customize existing
+
+context is the information on the job
+- has 2 zones - smart/dumb
+- bell curve
+
+dont compact just clear context
+
+have skill with db schema and readonly rights
+- data is anonymised
+
+best skills - super powers, brain storming / documentation
+try write your own skill
+- grill me skill
+- elfocrash - real work skill - brainstormins and planning
+    - split deliverable into phases
+    - put test infrastructure in place
+
+use work tree on git - for agents
+
+memory tools like obsidian - too much tooling can be dangerous
+    - see what works and what doesnt
+
+use settings.local.json  in claude?
+
+MCP : a way for an agent to take an action against spmethine where
+no structural way to take an action against
+- know your MCP servers
+- /mcp 
+- agents are really good at using clients
+- playright cli mcp is better than playwritge mcp
+
+- use claude for marketing and redo of site and app!!!
+- use design mcp for claude 
+- create an mcp for the system you are working on!!
+    - inject service - "get list of monkeys"
+    - find best options for swaps based on current stock prices------!!!!
+- is your site agent ready?
+- mcps for authentication
+- thinking tokens part of model design
+    - agents encrypting thinking tokens - see decrypt thinking tokens
+    - distilling- using 1 model to train another model
+
+take a look at the orca tool
+code reviewing tools like DELTA?
+the thinking in frontier models are encrypted
+you can use a hook to always persist/export conversations
+be careful of auto compaction because you can lose important context
+
+how would we transfer knowldge before ai?
+    meetings, alignment sessions, brainstorming
+
+is there something I do more than once a day that can be automated?
+e.g make a presentation for the sprint review
+
+use /rewind 
+
+manual QA document can be automated on the Website
+
+use an artifact to show me how it will look like - in claude / codex
+plann it well have a visual reference then build it
+
+claude has a fast mode - openai uses 8x speed for 6x price
+
+test out opencode harness
+
+using models in your applications
+    - check out gemini models 
+    - check out openai api pricing - luna is a good model
+    - openrouter
+
+context7.com up to date docs for ai agents
+
+vorssaint tool to keep apple macbook running
+
+ai-workshop.dometrain.com/docs/getting-started
+
+agents are really good at performance testing
+dotnet diag tool - will dump memory for analysis
+    - using dotnet diagnostic tools - please identify bottlenecks and hotspots
+
+/goal - use it but be very careful with it!!!!!
+
+stay on top of it
+ - nick chapsas github
+https://github.com/Dometrain/mcp
+
+---------------
+do you use unsloth studio? / or other tools that allow you to compare llms?
+    - local model usage
+what is bad about co-pilot?  work for microsoft house
+performance optimisation C#
+how often do you ask for advice/ideas
+    - have you run out of ideas
+smarter models are more honest
+how frequent is context rot? - I find I get it less often
